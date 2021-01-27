@@ -7,6 +7,11 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  def show
+    @post = Post.find(id = params[:id])
+    
+  end
+
   def create
     # byebug
     @post = Post.new(params.require(:post).permit(:title,:description))
@@ -19,4 +24,12 @@ class PostsController < ApplicationController
       redirect_to new_post_path
     end
   end
+
+  def destroy
+    # byebug
+    @post = Post.find(id = params[:id])
+    @post.destroy
+    redirect_to posts_path
+  end
+
 end

@@ -1,5 +1,17 @@
+
+  <table >
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Show</th>
+      <th>Delete</th>
+    </tr>
 <% @post.each do |post| %>
-  <p><%= post.title %> </p>
-  
-  <p><%= post.description %> </p>
+    <tr>
+      <td><%= post.title %></td>
+      <td><%= post.description %></td>
+      <td><%= link_to 'Show',post_path(post)  %></td>
+      <td><%= link_to 'Delete',post_path(post), method: :delete  %></td>
+    </tr>
 <% end %>
+  </table>
