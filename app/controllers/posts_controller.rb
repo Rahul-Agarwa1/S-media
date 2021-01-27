@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     # byebug
     @post = Post.find(id = params[:id])
     @comments = @post.comments
-    @comment = Comment.new
+    # @comment = Comment.new
   end
 
   def create

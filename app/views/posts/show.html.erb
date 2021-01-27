@@ -3,9 +3,16 @@
 <em>Description:</em><%= @post.description %>
 
 </br>
-------- view all comments here ---------
+------- view all comments here ---------</br>
 <% @comments.each do |comment| %>
-  <p><%= comment.com %></p>
+  <strong>By: <%= comment.user.first_name %></strong> <i><%= comment.com %></i>
+  
+
+  <%= link_to 'Delete', "/posts/#{comment.post.id}/comments/#{comment.id}", method: :delete %>
+
+  <%= link_to 'Edit', "/posts/#{comment.post.id}/comments/#{comment.id}/edit", method: :get %>
+  </br>
+
 <% end %>
 
 </br>

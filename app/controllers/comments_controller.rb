@@ -10,4 +10,20 @@ class CommentsController < ApplicationController
     redirect_to post_path(@post)
   end
 
+  def destroy
+    # byebug
+    @post = Post.find(id = params[:post_id])
+    @comment = Comment.find(id = params[:id])
+    @comment.destroy
+    redirect_to post_path(@post)
+
+  end
+
+  def edit
+  end
+
+  def update
+    byebug
+  end
+
 end

@@ -2,9 +2,15 @@
 <p>Find me in app/views/welcome/index.html.erb</p>
 
 
+<% if current_user %>
 <%= link_to "SingOut" ,destroy_user_session_path, method: :delete %> 
+<% else %>
+  <%= link_to 'Log_in', signin_path %>
+<% end %>
 
-<%= link_to "Posts" ,posts_path %> 
+|
+
+<%= link_to "Posts" ,posts_path %>  |
 
 <%= link_to "Create Post" ,new_post_path %> 
 
