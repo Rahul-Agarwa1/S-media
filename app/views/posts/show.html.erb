@@ -3,8 +3,19 @@
 <em>Description:</em><%= @post.description %>
 
 </br>
-view all comments here
+------- view all comments here ---------
+<% @comments.each do |comment| %>
+  <p><%= comment.com %></p>
+<% end %>
 
 </br>
 
-add a comment here
+<%= form_with model: [ @post, @post.comments.build ], local: true do |form| %>
+  <p>
+    <%= form.label :com, "Add your comment here" %><br>
+    <%= form.text_field :com %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

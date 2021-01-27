@@ -8,8 +8,11 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(id = params[:id])
     
+    # byebug
+    @post = Post.find(id = params[:id])
+    @comments = @post.comments
+    @comment = Comment.new
   end
 
   def create
