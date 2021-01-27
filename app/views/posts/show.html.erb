@@ -17,12 +17,4 @@
 
 </br>
 
-<%= form_with model: [ @post, @post.comments.build ], local: true do |form| %>
-  <p>
-    <%= form.label :com, "Comment" %><br>
-    <%= form.text_field :com %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+<%= render 'comments/form' %>
