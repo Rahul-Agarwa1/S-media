@@ -1,1 +1,9 @@
-render a form here
+<%= form_for [@post, @comment], local: true do |form| %>
+  <p>
+    <%= form.label :com, "Add your comment here" %><br>
+    <%= form.text_field :com %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

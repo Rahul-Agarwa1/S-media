@@ -1,7 +1,7 @@
 <h1>  Your Post </h1>
 <em>Title:</em><%= @post.title %> </br>
-<em>Description:</em><%= @post.description %>
-
+<em>Description:</em><%= @post.description %> </br>
+<em>By:<%= @post.user.full_name %></em>
 </br>
 ------- view all comments here ---------</br>
 <% @comments.each do |comment| %>

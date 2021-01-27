@@ -3,11 +3,14 @@ class CommentsController < ApplicationController
   def create
     # byebug
     @post = Post.find(id = params[:post_id])
-    @comment = @post.comments.create(params.require(:comment).permit(:com))
-    # byebug
+    @comment = @post.comments.new(params.require(:comment).permit(:com))
     @comment.user = current_user
-    @comment.save
-    redirect_to post_path(@post)
+    if @comment.save
+      flash[:notice] = "Comment is created successfully"
+      redirect_to post_path(@post) 
+    else
+      render 'new'
+    end
   end
 
   def destroy
@@ -20,10 +23,19 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @post = Post.find(id = params[:post_id])
+    @comment = Comment.find(id = params[:id])
   end
 
   def update
-    byebug
+    # byebug
+    @post = Post.find(id = params[:post_id])
+    @comment = Comment.find(params[:id])
+    if @comment.update(params.require(:comment).permit(:com))
+      redirect_to post_path(@post)
+    else
+      redirect_to edit_post_comment(@post,@comment)
+    end
   end
 
 end
