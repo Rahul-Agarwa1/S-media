@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  get 'myprofile', to: 'users#myprofile'
+
 
 
   

@@ -8,7 +8,7 @@
      <ul class="navbar-nav mr-auto">
        
        <li class="nav-item">
-        <%= link_to "Users", '#', class: "nav-link" %>
+        <%= link_to "My friends", '#', class: "nav-link" %>
        </li>
        <li class="nav-item dropdown">
          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -40,9 +40,9 @@
           Profile [<%= current_user.full_name %>]
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to "View your profile", '#', class: "dropdown-item" %>
-            <%= link_to "Edit your profile", '#', class: "dropdown-item" %>
-            <%= link_to "Delete profile", '#', class: "dropdown-item text-danger", method: :delete, data: { confirm: "Are you sure?" } %> 
+            <%= link_to "View your profile", myprofile_path, class: "dropdown-item" %>
+            <%= link_to "Edit your profile", edit_user_registration_path, class: "dropdown-item" %>
+            <%= link_to "Delete profile", '/users', method: :delete ,class: "dropdown-item text-danger", data: { confirm: "Are you sure?" } %> 
             </div>
         </li>
          <li class="nav-item">

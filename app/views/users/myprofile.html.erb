@@ -1,0 +1,8 @@
+profile of <%= @user.full_name %>
+
+<h1> All my posts</h1>
+
+<% @posts.each do |post| %>
+  <em>Title:</em><%= post.title %> </br>
+  <em>Description:</em><%= post.description %> </br>
+<% end %>
