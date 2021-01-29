@@ -11,6 +11,11 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  resources :posts do
+    resources :likes
+  end
+
+
   get 'myprofile', to: 'users#myprofile'
 
 
