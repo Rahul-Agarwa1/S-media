@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   get 'myprofile', to: 'users#myprofile'
 
+  get 'myfriends', to: 'users#myfriends'
+
 
 
   
