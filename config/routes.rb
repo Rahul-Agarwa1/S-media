@@ -22,8 +22,19 @@ Rails.application.routes.draw do
 
   get 'friend_results', to: 'users#friend_results'
 
-  resources :users
+  get 'users/:user_id/friends',to: "users#friends",as: 'user_friends'
 
+  get 'users/:user_id/pendingrequests',to: "users#pendingrequests",as: 'user_pending_request'
+  
+  get 'users/:user_id/receievedrequests',to: "users#receievedrequests",as: 'user_receieved_request'
+  
+  post 'users/accept_request/:user_id', to: "friendships#accept",as: 'accept_request'
+  
+  delete 'users/unfriend/:user_id',to:"friendships#unfriend",as: "user_unfriend"
+
+  resources:users, only: [:show, :destroy] do
+    resources:friendships
+  end  
 
 
 

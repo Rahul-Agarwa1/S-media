@@ -17,7 +17,7 @@ class LikesController < ApplicationController
   def destroy
     # byebug
     if !(already_liked?)
-      flash[:notice] = "Cannot unlike"
+      flash[:notice] = "Cannot Unlike"
     else
       @like.destroy
     end

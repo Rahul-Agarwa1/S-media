@@ -1,9 +1,10 @@
 <h1>  Your Post </h1>
 <em>Title:</em><%= @post.title %> </br>
 <em>Description:</em><%= @post.description %> </br>
-<em>By:<%= @post.user.full_name %></em>
+<em>By:<%= link_to @post.user.full_name, user_path(@post.user) %></em>
 </br>
 <% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
+</br>
 <% if pre_like %>
   <%= link_to 'Unlike', "#{@post.id}/likes/#{pre_like.id}", method: :delete , remote: true %>
 <% else %>

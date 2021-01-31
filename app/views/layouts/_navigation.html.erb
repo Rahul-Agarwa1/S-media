@@ -7,33 +7,31 @@
    <div class="collapse navbar-collapse" id="navbarSupportedContent">
      <ul class="navbar-nav mr-auto">
        
-       <li class="nav-item">
-        <%= link_to "My friends", myfriends_path, class: "nav-link" %>
-       </li>
-       <li class="nav-item dropdown">
-         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           Posts
-         </a>
-         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <% if user_signed_in? %>
-          <%= link_to "Create new Post", new_post_path, class: "dropdown-item" %>
-          <% end %>  
+       <% if user_signed_in? %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Friends
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to "My friends", user_friends_path(current_user), class: "dropdown-item" %>
+            <%= link_to "Pending Requests", user_receieved_request_path(current_user), class: "dropdown-item" %>
+            <%= link_to "Requests Sent", user_pending_request_path(current_user), class: "dropdown-item" %>
+          </div>
+        </li>
+       <% end %>
+       <% if user_signed_in? %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Posts
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to "Create new Post", new_post_path, class: "dropdown-item" %>
             <%= link_to "View Posts", posts_path, class: "dropdown-item" %>
-           <div class="dropdown-divider"></div>
-           <a class="dropdown-item" href="#">Something else here</a>
-         </div>
-       </li>
-       <li class="nav-item dropdown">
-         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           Categories
-         </a>
-         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-           <% if user_signed_in? %>
-             <%= link_to "Create new category", '#', class: "dropdown-item" %>
-           <% end %>  
-           <%= link_to "View categories", '#', class: "dropdown-item" %>
-         </div>
-       </li>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+       <% end %>  
        <% if user_signed_in? %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
