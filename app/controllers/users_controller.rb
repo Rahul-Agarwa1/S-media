@@ -8,11 +8,20 @@ class UsersController < ApplicationController
     @friends = current_user.friends
   end
 
+  def show
+    # byebug
+    @user = User.find(id=params[:id])
+    @posts = @user.posts
+    
+  end
+
+
   def search
     
     if params[:friend].present?
-      @friends = User.all
-      # @friends = User.search(params[:friend])
+      # @friends = User.all
+      @all_friends = User.search(params[:friend])
+      @friends = @all_friends.first(5)
       # byebug
       if @friends
         respond_to do |format|
@@ -30,6 +39,12 @@ class UsersController < ApplicationController
         format.js { render partial: 'users/friend_result' }
       end
     end
+  end
+
+  def friend_results
+    @all_friends = params[:format]
+    
+    
   end
 
 

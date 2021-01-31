@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_31_063238) do
+ActiveRecord::Schema.define(version: 2021_01_31_092023) do
 
   create_table "comments", force: :cascade do |t|
     t.string "com"
@@ -23,12 +23,13 @@ ActiveRecord::Schema.define(version: 2021_01_31_063238) do
   end
 
   create_table "friendships", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "friend_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["friend_id"], name: "index_friendships_on_friend_id"
-    t.index ["user_id"], name: "index_friendships_on_user_id"
+    t.integer "sent_by_id"
+    t.integer "sent_to_id"
+    t.boolean "status", default: false
+    t.index ["sent_by_id"], name: "index_friendships_on_sent_by_id"
+    t.index ["sent_to_id"], name: "index_friendships_on_sent_to_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -67,8 +68,8 @@ ActiveRecord::Schema.define(version: 2021_01_31_063238) do
 
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
-  add_foreign_key "friendships", "users"
-  add_foreign_key "friendships", "users", column: "friend_id"
+  add_foreign_key "friendships", "users", column: "sent_by_id"
+  add_foreign_key "friendships", "users", column: "sent_to_id"
   add_foreign_key "likes", "users"
   add_foreign_key "posts", "users"
 end

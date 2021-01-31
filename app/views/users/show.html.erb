@@ -1,0 +1,21 @@
+<div class= "container">
+  
+  <h1> Hello </h1>
+  <div class: "card " style= "width: 18rem;">
+    <%= image_tag @user.avatar_url.to_s, size: "100x100" , class: "card-img-top"  %>
+    <div class: "card-body">
+      <em class: "card-text"><%= @user.full_name %></em>
+    </div>
+  </div>
+
+  <h1> All my posts</h1>
+
+
+  <% @posts.each do |post| %>
+    <em>Title:</em><%= post.title %> </br>
+    <em>Description:</em><%= post.description %> </br>
+  <% end %>
+</div>
+
+
+
