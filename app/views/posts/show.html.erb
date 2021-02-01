@@ -1,7 +1,14 @@
 <h1>  Your Post </h1>
 <em>Title:</em><%= @post.title %> </br>
 <em>Description:</em><%= @post.description %> </br>
-<em>By:<%= link_to @post.user.full_name, user_path(@post.user) %></em>
+<em>By:<%= link_to @post.user.full_name, user_path(@post.user) %></em> 
+
+<% if can? :update, @post %>
+|
+  <%= link_to 'Edit',edit_post_path(@post), method: :get %>
+<% end %>
+
+
 </br>
 <% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
 </br>
@@ -18,9 +25,12 @@
   <strong>By: <%= comment.user.first_name %></strong> <i><%= comment.com %></i>
   
   <p>
-  <%= link_to 'Delete', "/posts/#{comment.post.id}/comments/#{comment.id}", method: :delete, remote: true %>
-
+  <% if can? :destroy, comment %>
+    <%= link_to 'Delete', "/posts/#{comment.post.id}/comments/#{comment.id}", method: :delete, remote: true %>
+  <% end %> 
+  <% if can? :update, comment %>
   <%= link_to 'Edit', "/posts/#{comment.post.id}/comments/#{comment.id}/edit", method: :get %>
+  <% end %>
   <% pre_like = comment.likes.find { |like| like.user_id == current_user.id} %>
   <% if pre_like %>
     <%= link_to 'Unlike', post_comment_like_path(@post,comment,pre_like), method: :delete , remote: true%>
