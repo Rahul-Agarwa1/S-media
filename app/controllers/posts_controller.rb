@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+
+  load_and_authorize_resource except: [:index,:show,:create]
+  
   def index
     @post = Post.all
   end
@@ -26,6 +29,23 @@ class PostsController < ApplicationController
       flash[:error] = 'failed to save'
       redirect_to new_post_path
     end
+  end
+
+  def edit
+    @post=Post.find(params[:id])
+  end
+
+  def update
+    # byebug
+    @post = Post.find(id= params[:id])
+    if @post.update(params.require(:post).permit(:title,:description))
+      flash[:notice] = 'Updated Successfully'
+      redirect_to post_path(@post)
+    else
+      flash[:error] = 'failed to Update'
+      redirect_to post_path(@post)
+    end
+
   end
 
   def destroy

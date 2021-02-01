@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
 
+  load_and_authorize_resource except: [:show,:create]
+
   def create
     # byebug
     @post = Post.find(id = params[:post_id])
