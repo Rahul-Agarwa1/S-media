@@ -24,6 +24,8 @@ Rails.application.routes.draw do
 
   get 'users/:user_id/friends',to: "users#friends",as: 'user_friends'
 
+  get 'users/:user_id/mutual_friends',to: "users#mutual_friends",as: 'mutual_friends'
+
   get 'users/:user_id/pendingrequests',to: "users#pendingrequests",as: 'user_pending_request'
   
   get 'users/:user_id/receievedrequests',to: "users#receievedrequests",as: 'user_receieved_request'
