@@ -52,6 +52,17 @@ class UsersController < ApplicationController
     @friends=@user.all_friends
   end
 
+  def mutual_friends
+    # byebug
+    @user=User.find(params[:user_id])
+    @friends=@user.all_friends
+    @my_friends = User.find(current_user.id).all_friends
+
+    @mutual_friends = (@friends & @my_friends)
+
+    
+  end
+
   def pendingrequests
     @user=User.find(params[:user_id])
     @pendingrequests=@user.pending_requests

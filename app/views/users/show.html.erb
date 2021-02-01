@@ -15,6 +15,8 @@
   <%else%>
       <%= button_to 'Unfriend', user_unfriend_path(@user), method: :delete ,remote:true%>
   <%end %>
+  
+  <%= button_to 'Mutual Friends', mutual_friends_path(@user), method: :get %>
 
 
   <h1> All my posts</h1>
