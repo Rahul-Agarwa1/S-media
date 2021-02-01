@@ -17,5 +17,12 @@
   <% end %>
 </div>
 
+<div class= container >
+  <p> <%= link_to 'friend_request_sent', user_pending_request_path(@user),class: "btn btn-sm btn-success" %> </p>
+  
+  <p> <%= link_to 'friend_request_recieved', user_receieved_request_path(@user),class: "btn btn-sm btn-success" %></p>
+  
+  <p><%= link_to 'friends', user_friends_path(@user), class: "btn btn-sm btn-success" %></p>
+</div>
 
 

@@ -1,0 +1,10 @@
+<div class= "container">
+  <% @friends.each do |friend| %>
+    <div class: "card " style= "width: 18rem;">
+      <%= image_tag friend.avatar_url.to_s, size: "100x100" , class: "card-img-top"  %>
+      <div class: "card-body">
+        <em class: "card-text"><%=link_to friend.full_name, user_path(friend) %></em>
+      </div>
+    </div>
+  <% end %>
+</div>

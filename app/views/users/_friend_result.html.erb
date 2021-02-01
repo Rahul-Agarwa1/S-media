@@ -6,13 +6,19 @@
       <tr>
         <td><strong>Name: </strong> <%= friend.full_name %></td>
         <td><strong>Email: </strong> <%= friend.email %></td>
-        <td><strong>Actions: </strong> <%= link_to "View Profile", '#',
+        <td><strong>Actions: </strong> <%= link_to "View Profile", user_path(friend)  ,
                           class: "btn btn-sm btn-success" %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<% if @all_friends.count > 5 %>
+  <%= link_to "View all Results", friend_results_path(@all_friends)  ,
+  class: "btn btn-sm btn-success" %>
+<% end %>
 </div>
 <% end %> 
+
+
 
