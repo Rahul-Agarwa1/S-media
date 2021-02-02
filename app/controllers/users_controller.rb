@@ -12,7 +12,25 @@ class UsersController < ApplicationController
   def show
     # byebug
     @user = User.find(id=params[:id])
-    @posts = @user.posts
+    # @posts = @user.posts
+
+    # byebug
+
+    #show the post where post.where(post_type: "everyone") or 
+    #where(post_type: "friends" && if current_user is friend of this user)
+
+    @posts = @user.posts.where(post_type: "public") #every one extracted
+
+    #if current user is friend then 'friends' visibility should be extracted
+    
+    if @user.friends_b_to_a.where(id: current_user).present? or @user.friends_a_to_b.where(id: current_user).present?
+      @posts += @user.posts.where(post_type: "friends")
+    end
+
+    # byebug
+
+
+
   end
 
 
@@ -55,7 +73,9 @@ class UsersController < ApplicationController
   def mutual_friends
     # byebug
     @user=User.find(params[:user_id])
-    @friends=@user.all_friends
+    @friends=@user.all_friends  #a => b,c ,d
+    #b => a,c,d
+    #c,d
     @my_friends = User.find(current_user.id).all_friends
 
     @mutual_friends = (@friends & @my_friends)
