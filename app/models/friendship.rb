@@ -5,5 +5,6 @@ class Friendship < ApplicationRecord
   scope :not_friends, -> { where(status: false) }
   # scope :by_status, -> status { where(status: status) if status.present? }
   # scope :with_long_title, ->(length = 20) { where("LENGTH(title) > ?", length) }
-
+  # In terms of functionality, the only difference is that scopes guarantee 
+  # an ActiveRecord::Relation, and class methods don’t.-> i find it not working
 end

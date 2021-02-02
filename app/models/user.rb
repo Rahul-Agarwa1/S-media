@@ -6,6 +6,10 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+
+  has_one :userdetail, dependent: :destroy
+  accepts_nested_attributes_for :userdetail, allow_destroy: true
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -49,4 +53,15 @@ class User < ApplicationRecord
     # first_name+" "+last_name
     "#{first_name} #{last_name}"
   end
+
+  def with_userdetail
+    build_userdetail if userdetail.nil?
+    self
+  end
+
+  # def self.test
+  #   where(first_name: "Rahul")
+  # end
+  # scope :testing, -> { where(first_name: "Rahul") }
+
 end
