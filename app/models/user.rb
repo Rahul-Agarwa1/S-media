@@ -49,4 +49,10 @@ class User < ApplicationRecord
     # first_name+" "+last_name
     "#{first_name} #{last_name}"
   end
+
+  # def self.test
+  #   where(first_name: "Rahul")
+  # end
+  # scope :testing, -> { where(first_name: "Rahul") }
+
 end
