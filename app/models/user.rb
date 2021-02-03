@@ -34,10 +34,10 @@ class User < ApplicationRecord
   #for search features
   def self.search(searchstring)
     searchstring.strip!
-    @first=match('email',searchstring)
-    @second=match('first_name',searchstring)
-    @third=match('last_name',searchstring)
-    result = (@first+@second+@third).uniq
+    first=match('email',searchstring)
+    second=match('first_name',searchstring)
+    third=match('last_name',searchstring)
+    result = (first+second+third).uniq
     result
   end
 
