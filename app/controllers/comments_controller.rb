@@ -6,14 +6,14 @@ class CommentsController < ApplicationController
 
 
   def create
-    @comment = @post.comments.new(set_params)
-    @comment.user = current_user
-    if @comment.save
-      flash[:notice] = "Comment is created successfully"
-      redirect_to post_path(@post) 
-    else
-      render 'new'
-    end
+      respond_to do |format|
+        @comment = @post.comments.new(set_params)
+        @comment.user = current_user
+        if @comment.save
+          flash.now[:notice] = "Comment is created successfully"
+          format.js { render partial: 'comments/add_comment' }
+        end
+      end
   end
 
   def destroy

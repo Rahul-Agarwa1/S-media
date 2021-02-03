@@ -1,0 +1,18 @@
+<strong>By: <%= @comment.user.first_name %></strong> <i><%= @comment.com %></i>
+  
+<p>
+  <% if can? :destroy, @comment %>
+    <%= link_to 'Delete', "/posts/#{@comment.post.id}/comments/#{@comment.id}", method: :delete, remote: true %>
+  <% end %> 
+  <% if can? :update, @comment %>
+  <%= link_to 'Edit', "/posts/#{@comment.post.id}/comments/#{@comment.id}/edit", method: :get %>
+  <% end %>
+  <% pre_like = @comment.likes.find { |like| like.user_id == current_user.id} %>
+  <% if pre_like %>
+    <%= link_to 'Unlike', post_comment_like_path(@post,@comment,pre_like), method: :delete , remote: true%>
+  <% else %>
+    <%= link_to 'Like', post_comment_likes_path(@post,@comment), method: :post , remote: true%>
+  <% end %>
+  
+</p>
+</br>
