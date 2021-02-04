@@ -1,4 +1,7 @@
 
+
+<input type="button" class="test" value="test">
+
   <table >
     <tr>
       <th>Title</th>
@@ -6,11 +9,12 @@
       <th>Show</th>
       <th>Delete</th>
     </tr>
+
 <% @post.each do |post| %>
     <tr>
       <td><%= post.title %></td>
       <td><%= post.description %></td>
-      <td><%= link_to 'Show',post_path(post)  %></td>
+      <td><%= link_to 'Show',post_path(post) %></td>
       <% if can? :destroy, post %>
       <td><%= link_to 'Delete',post_path(post), method: :delete  %></td>
       <% end %>
