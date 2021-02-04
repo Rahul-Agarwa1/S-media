@@ -1,9 +1,9 @@
 <%= form_for [@post, @comment],remote: true do |form| %>
   <p>
     <%= form.label :com, "Comment" %><br>
-    <%= form.text_field :com %>
+    <%= form.text_field :com, class: "text-field" %>
   </p>
   <p>
-    <%= form.submit %>
+    <%= form.submit "Comment here" %>
   </p>
 <% end %>
